@@ -298,6 +298,10 @@ void CMsgConn::HandlePdu(CImPdu* pPdu)
         case CID_OTHER_HEARTBEAT:
             _HandleHeartBeat(pPdu);
             break;
+        case CID_REGISTER_REQ_USER:  
+        //注册账号 _HandleRegisterRequest
+            _HandleRegisterRequest(pPdu );
+            break;
         case CID_LOGIN_REQ_USERLOGIN:
             _HandleLoginRequest(pPdu );
             break;
@@ -410,7 +414,7 @@ void CMsgConn::_HandleHeartBeat(CImPdu *pPdu)
     SendPdu(pPdu);
 }
 
-// process: send validate request to db server
+// process: send validate request to db server  _HandleRegisterRequest
 void CMsgConn::_HandleLoginRequest(CImPdu* pPdu)
 {
     // refuse second validate request
@@ -435,7 +439,7 @@ void CMsgConn::_HandleLoginRequest(CImPdu* pPdu)
         result = IM::BaseDefine::REFUSE_REASON_NO_ROUTE_SERVER;
         result_string = "服务端异常";
     
-}
+    }
     if (result) {
         IM::Login::IMLoginRes msg;
         msg.set_server_time(time(NULL));
@@ -1013,4 +1017,79 @@ void CMsgConn::_HandleQueryPushShieldRequest(CImPdu* pPdu) {
         pPdu->SetPBMsg(&msg);
         pDBConn->SendPdu(pPdu);
     }
+}
+
+
+//注册账号
+void CMsgConn::_HandleRegisterRequest(CImPdu* pPdu)
+{
+    // refuse second validate request
+    if (m_login_name.length() != 0) {
+        log("duplicate LoginRequest in the same conn ");
+        return;
+    }
+    
+    // check if all server connection are OK
+    uint32_t result = 0;
+    string result_string = "";
+    CDBServConn* pDbConn = get_db_serv_conn_for_login();
+    if (!pDbConn) {
+        result = IM::BaseDefine::REFUSE_REASON_NO_DB_SERVER;
+        result_string = "服务端异常";
+	}
+    else if (!is_login_server_available()) {
+        result = IM::BaseDefine::REFUSE_REASON_NO_LOGIN_SERVER;
+        result_string = "服务端异常";
+	}
+    else if (!is_route_server_available()) {
+        result = IM::BaseDefine::REFUSE_REASON_NO_ROUTE_SERVER;
+        result_string = "服务端异常";
+    
+    }
+    if (result) {
+        IM::Login::IMLoginRes msg;
+        msg.set_server_time(time(NULL));
+        msg.set_result_code((IM::BaseDefine::ResultType)result);
+        msg.set_result_string(result_string);
+        CImPdu pdu;
+        pdu.SetPBMsg(&msg);
+        pdu.SetServiceId(SID_LOGIN);
+        pdu.SetCommandId(CID_LOGIN_RES_USERLOGIN);
+        pdu.SetSeqNum(pPdu->GetSeqNum());
+        SendPdu(&pdu);
+        Close();
+        return;
+    }
+    IM::Login::IMLoginReq msg;
+    CHECK_PB_PARSE_MSG(msg.ParseFromArray(pPdu->GetBodyData(), pPdu->GetBodyLength()));
+    //假如是汉字，则转成拼音
+    m_login_name = msg.user_name();
+    string password = msg.password();
+    uint32_t online_status = msg.online_status();
+    m_client_version = msg.client_version();
+    m_client_type = msg.client_type();
+    m_online_status = online_status;
+    log("HandleRegisterReq, user_name=%s, client_type=%u, client=%s, ",
+        m_login_name.c_str(), m_client_type, m_client_version.c_str());
+    CImUser* pImUser = CImUserManager::GetInstance()->GetImUserByLoginName(GetLoginName());
+    if (!pImUser) {
+        pImUser = new CImUser(GetLoginName());
+        CImUserManager::GetInstance()->AddImUserByLoginName(GetLoginName(), pImUser);
+    }
+    pImUser->AddUnValidateMsgConn(this);
+    
+    CDbAttachData attach_data(ATTACH_TYPE_HANDLE, m_handle, 0);
+    // continue to validate if the user is OK
+    
+    IM::Server::IMValidateReq msg2;
+    msg2.set_user_name(msg.user_name());
+    msg2.set_password(password);
+    msg2.set_attach_data(attach_data.GetBuffer(), attach_data.GetLength());
+    CImPdu pdu;
+    pdu.SetPBMsg(&msg2);
+    pdu.SetServiceId(SID_OTHER);
+    pdu.SetCommandId(CID_OTHER_VALIDATE_REQ);
+    pdu.SetSeqNum(pPdu->GetSeqNum());
+    pDbConn->SendPdu(&pdu);
+
 }
