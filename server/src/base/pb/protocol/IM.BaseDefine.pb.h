@@ -57,14 +57,17 @@ enum ServiceID {
   SID_FILE = 5,
   SID_SWITCH_SERVICE = 6,
   SID_OTHER = 7,
-  SID_INTERNAL = 8
+  SID_INTERNAL = 8,
+  SID_REGISTER =9
 };
 bool ServiceID_IsValid(int value);
 const ServiceID ServiceID_MIN = SID_LOGIN;
-const ServiceID ServiceID_MAX = SID_INTERNAL;
+const ServiceID ServiceID_MAX = SID_REGISTER;
 const int ServiceID_ARRAYSIZE = ServiceID_MAX + 1;
 
 enum LoginCmdID {
+  CID_REGISTER_REQ_USER =255,
+  CID_REGISTER_RES_USER  =254,
   CID_LOGIN_REQ_MSGSERVER = 257,
   CID_LOGIN_RES_MSGSERVER = 258,
   CID_LOGIN_REQ_USERLOGIN = 259,
