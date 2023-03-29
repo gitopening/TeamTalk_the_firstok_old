@@ -368,7 +368,7 @@ bool CGroupModel::insertNewMember(uint32_t nGroupId, set<uint32_t>& setUsers)
                         pDBConn->ExecuteUpdate(strSql.c_str());
                     }
                  
-                    //插入群成员表 GroupModel.cpp
+                    //插入群成员表 GroupModel.cpp GroupAction bool bRet = CGroupModel::getInstance()->modifyGroupMember(nUserId, nGroupId, nType, setUserId, lsCurUserId); 直接使用的地方
                     strSql = "insert into IMGroupMember(`groupId`, `userId`, `status`, `created`, `updated`) values\
                     (?,?,?,?,?)";
                     
