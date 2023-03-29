@@ -49,6 +49,8 @@ class IMPushShieldReq;
 class IMPushShieldRsp;
 class IMQueryPushShieldReq;
 class IMQueryPushShieldRsp;
+class IMModifyPasswordReq;
+class IMModifyPasswordRsp;
 
 // ===================================================================
 
@@ -1721,6 +1723,288 @@ class IMQueryPushShieldRsp : public ::google::protobuf::MessageLite {
 
   void InitAsDefaultInstance();
   static IMQueryPushShieldRsp* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class IMModifyPasswordReq : public ::google::protobuf::MessageLite {
+ public:
+  IMModifyPasswordReq();
+  virtual ~IMModifyPasswordReq();
+
+  IMModifyPasswordReq(const IMModifyPasswordReq& from);
+
+  inline IMModifyPasswordReq& operator=(const IMModifyPasswordReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::std::string& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::std::string* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const IMModifyPasswordReq& default_instance();
+
+  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  // Returns the internal default instance pointer. This function can
+  // return NULL thus should not be used by the user. This is intended
+  // for Protobuf internal code. Please use default_instance() declared
+  // above instead.
+  static inline const IMModifyPasswordReq* internal_default_instance() {
+    return default_instance_;
+  }
+  #endif
+
+  void Swap(IMModifyPasswordReq* other);
+
+  // implements Message ----------------------------------------------
+
+  IMModifyPasswordReq* New() const;
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
+  void CopyFrom(const IMModifyPasswordReq& from);
+  void MergeFrom(const IMModifyPasswordReq& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  void DiscardUnknownFields();
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  ::std::string GetTypeName() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required uint32 user_id = 1;
+  inline bool has_user_id() const;
+  inline void clear_user_id();
+  static const int kUserIdFieldNumber = 1;
+  inline ::google::protobuf::uint32 user_id() const;
+  inline void set_user_id(::google::protobuf::uint32 value);
+
+  // required string old_pwd = 2;
+  inline bool has_old_pwd() const;
+  inline void clear_old_pwd();
+  static const int kOldPwdFieldNumber = 2;
+  inline const ::std::string& old_pwd() const;
+  inline void set_old_pwd(const ::std::string& value);
+  inline void set_old_pwd(const char* value);
+  inline void set_old_pwd(const char* value, size_t size);
+  inline ::std::string* mutable_old_pwd();
+  inline ::std::string* release_old_pwd();
+  inline void set_allocated_old_pwd(::std::string* old_pwd);
+
+  // optional string new_pwd = 3;
+  inline bool has_new_pwd() const;
+  inline void clear_new_pwd();
+  static const int kNewPwdFieldNumber = 3;
+  inline const ::std::string& new_pwd() const;
+  inline void set_new_pwd(const ::std::string& value);
+  inline void set_new_pwd(const char* value);
+  inline void set_new_pwd(const char* value, size_t size);
+  inline ::std::string* mutable_new_pwd();
+  inline ::std::string* release_new_pwd();
+  inline void set_allocated_new_pwd(::std::string* new_pwd);
+
+  // optional string user_name = 4;
+  inline bool has_user_name() const;
+  inline void clear_user_name();
+  static const int kUserNameFieldNumber = 4;
+  inline const ::std::string& user_name() const;
+  inline void set_user_name(const ::std::string& value);
+  inline void set_user_name(const char* value);
+  inline void set_user_name(const char* value, size_t size);
+  inline ::std::string* mutable_user_name();
+  inline ::std::string* release_user_name();
+  inline void set_allocated_user_name(::std::string* user_name);
+
+  // optional bytes attach_data = 20;
+  inline bool has_attach_data() const;
+  inline void clear_attach_data();
+  static const int kAttachDataFieldNumber = 20;
+  inline const ::std::string& attach_data() const;
+  inline void set_attach_data(const ::std::string& value);
+  inline void set_attach_data(const char* value);
+  inline void set_attach_data(const void* value, size_t size);
+  inline ::std::string* mutable_attach_data();
+  inline ::std::string* release_attach_data();
+  inline void set_allocated_attach_data(::std::string* attach_data);
+
+  // @@protoc_insertion_point(class_scope:IM.Login.IMModifyPasswordReq)
+ private:
+  inline void set_has_user_id();
+  inline void clear_has_user_id();
+  inline void set_has_old_pwd();
+  inline void clear_has_old_pwd();
+  inline void set_has_new_pwd();
+  inline void clear_has_new_pwd();
+  inline void set_has_user_name();
+  inline void clear_has_user_name();
+  inline void set_has_attach_data();
+  inline void clear_has_attach_data();
+
+  ::std::string _unknown_fields_;
+
+  ::google::protobuf::uint32 _has_bits_[1];
+  mutable int _cached_size_;
+  ::std::string* old_pwd_;
+  ::std::string* new_pwd_;
+  ::std::string* user_name_;
+  ::std::string* attach_data_;
+  ::google::protobuf::uint32 user_id_;
+  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void  protobuf_AddDesc_IM_2eLogin_2eproto_impl();
+  #else
+  friend void  protobuf_AddDesc_IM_2eLogin_2eproto();
+  #endif
+  friend void protobuf_AssignDesc_IM_2eLogin_2eproto();
+  friend void protobuf_ShutdownFile_IM_2eLogin_2eproto();
+
+  void InitAsDefaultInstance();
+  static IMModifyPasswordReq* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class IMModifyPasswordRsp : public ::google::protobuf::MessageLite {
+ public:
+  IMModifyPasswordRsp();
+  virtual ~IMModifyPasswordRsp();
+
+  IMModifyPasswordRsp(const IMModifyPasswordRsp& from);
+
+  inline IMModifyPasswordRsp& operator=(const IMModifyPasswordRsp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::std::string& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::std::string* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const IMModifyPasswordRsp& default_instance();
+
+  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  // Returns the internal default instance pointer. This function can
+  // return NULL thus should not be used by the user. This is intended
+  // for Protobuf internal code. Please use default_instance() declared
+  // above instead.
+  static inline const IMModifyPasswordRsp* internal_default_instance() {
+    return default_instance_;
+  }
+  #endif
+
+  void Swap(IMModifyPasswordRsp* other);
+
+  // implements Message ----------------------------------------------
+
+  IMModifyPasswordRsp* New() const;
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
+  void CopyFrom(const IMModifyPasswordRsp& from);
+  void MergeFrom(const IMModifyPasswordRsp& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  void DiscardUnknownFields();
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  ::std::string GetTypeName() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required uint32 user_id = 1;
+  inline bool has_user_id() const;
+  inline void clear_user_id();
+  static const int kUserIdFieldNumber = 1;
+  inline ::google::protobuf::uint32 user_id() const;
+  inline void set_user_id(::google::protobuf::uint32 value);
+
+  // required uint32 result_code = 2;
+  inline bool has_result_code() const;
+  inline void clear_result_code();
+  static const int kResultCodeFieldNumber = 2;
+  inline ::google::protobuf::uint32 result_code() const;
+  inline void set_result_code(::google::protobuf::uint32 value);
+
+  // optional string user_name = 3;
+  inline bool has_user_name() const;
+  inline void clear_user_name();
+  static const int kUserNameFieldNumber = 3;
+  inline const ::std::string& user_name() const;
+  inline void set_user_name(const ::std::string& value);
+  inline void set_user_name(const char* value);
+  inline void set_user_name(const char* value, size_t size);
+  inline ::std::string* mutable_user_name();
+  inline ::std::string* release_user_name();
+  inline void set_allocated_user_name(::std::string* user_name);
+
+  // optional bytes attach_data = 20;
+  inline bool has_attach_data() const;
+  inline void clear_attach_data();
+  static const int kAttachDataFieldNumber = 20;
+  inline const ::std::string& attach_data() const;
+  inline void set_attach_data(const ::std::string& value);
+  inline void set_attach_data(const char* value);
+  inline void set_attach_data(const void* value, size_t size);
+  inline ::std::string* mutable_attach_data();
+  inline ::std::string* release_attach_data();
+  inline void set_allocated_attach_data(::std::string* attach_data);
+
+  // @@protoc_insertion_point(class_scope:IM.Login.IMModifyPasswordRsp)
+ private:
+  inline void set_has_user_id();
+  inline void clear_has_user_id();
+  inline void set_has_result_code();
+  inline void clear_has_result_code();
+  inline void set_has_user_name();
+  inline void clear_has_user_name();
+  inline void set_has_attach_data();
+  inline void clear_has_attach_data();
+
+  ::std::string _unknown_fields_;
+
+  ::google::protobuf::uint32 _has_bits_[1];
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 user_id_;
+  ::google::protobuf::uint32 result_code_;
+  ::std::string* user_name_;
+  ::std::string* attach_data_;
+  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void  protobuf_AddDesc_IM_2eLogin_2eproto_impl();
+  #else
+  friend void  protobuf_AddDesc_IM_2eLogin_2eproto();
+  #endif
+  friend void protobuf_AssignDesc_IM_2eLogin_2eproto();
+  friend void protobuf_ShutdownFile_IM_2eLogin_2eproto();
+
+  void InitAsDefaultInstance();
+  static IMModifyPasswordRsp* default_instance_;
 };
 // ===================================================================
 
@@ -3423,6 +3707,542 @@ inline void IMQueryPushShieldRsp::set_allocated_attach_data(::std::string* attac
     attach_data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:IM.Login.IMQueryPushShieldRsp.attach_data)
+}
+
+// -------------------------------------------------------------------
+
+// IMModifyPasswordReq
+
+// required uint32 user_id = 1;
+inline bool IMModifyPasswordReq::has_user_id() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void IMModifyPasswordReq::set_has_user_id() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void IMModifyPasswordReq::clear_has_user_id() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void IMModifyPasswordReq::clear_user_id() {
+  user_id_ = 0u;
+  clear_has_user_id();
+}
+inline ::google::protobuf::uint32 IMModifyPasswordReq::user_id() const {
+  // @@protoc_insertion_point(field_get:IM.Login.IMModifyPasswordReq.user_id)
+  return user_id_;
+}
+inline void IMModifyPasswordReq::set_user_id(::google::protobuf::uint32 value) {
+  set_has_user_id();
+  user_id_ = value;
+  // @@protoc_insertion_point(field_set:IM.Login.IMModifyPasswordReq.user_id)
+}
+
+// required string old_pwd = 2;
+inline bool IMModifyPasswordReq::has_old_pwd() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void IMModifyPasswordReq::set_has_old_pwd() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void IMModifyPasswordReq::clear_has_old_pwd() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void IMModifyPasswordReq::clear_old_pwd() {
+  if (old_pwd_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    old_pwd_->clear();
+  }
+  clear_has_old_pwd();
+}
+inline const ::std::string& IMModifyPasswordReq::old_pwd() const {
+  // @@protoc_insertion_point(field_get:IM.Login.IMModifyPasswordReq.old_pwd)
+  return *old_pwd_;
+}
+inline void IMModifyPasswordReq::set_old_pwd(const ::std::string& value) {
+  set_has_old_pwd();
+  if (old_pwd_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    old_pwd_ = new ::std::string;
+  }
+  old_pwd_->assign(value);
+  // @@protoc_insertion_point(field_set:IM.Login.IMModifyPasswordReq.old_pwd)
+}
+inline void IMModifyPasswordReq::set_old_pwd(const char* value) {
+  set_has_old_pwd();
+  if (old_pwd_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    old_pwd_ = new ::std::string;
+  }
+  old_pwd_->assign(value);
+  // @@protoc_insertion_point(field_set_char:IM.Login.IMModifyPasswordReq.old_pwd)
+}
+inline void IMModifyPasswordReq::set_old_pwd(const char* value, size_t size) {
+  set_has_old_pwd();
+  if (old_pwd_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    old_pwd_ = new ::std::string;
+  }
+  old_pwd_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:IM.Login.IMModifyPasswordReq.old_pwd)
+}
+inline ::std::string* IMModifyPasswordReq::mutable_old_pwd() {
+  set_has_old_pwd();
+  if (old_pwd_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    old_pwd_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:IM.Login.IMModifyPasswordReq.old_pwd)
+  return old_pwd_;
+}
+inline ::std::string* IMModifyPasswordReq::release_old_pwd() {
+  clear_has_old_pwd();
+  if (old_pwd_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = old_pwd_;
+    old_pwd_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void IMModifyPasswordReq::set_allocated_old_pwd(::std::string* old_pwd) {
+  if (old_pwd_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete old_pwd_;
+  }
+  if (old_pwd) {
+    set_has_old_pwd();
+    old_pwd_ = old_pwd;
+  } else {
+    clear_has_old_pwd();
+    old_pwd_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:IM.Login.IMModifyPasswordReq.old_pwd)
+}
+
+// optional string new_pwd = 3;
+inline bool IMModifyPasswordReq::has_new_pwd() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void IMModifyPasswordReq::set_has_new_pwd() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void IMModifyPasswordReq::clear_has_new_pwd() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void IMModifyPasswordReq::clear_new_pwd() {
+  if (new_pwd_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    new_pwd_->clear();
+  }
+  clear_has_new_pwd();
+}
+inline const ::std::string& IMModifyPasswordReq::new_pwd() const {
+  // @@protoc_insertion_point(field_get:IM.Login.IMModifyPasswordReq.new_pwd)
+  return *new_pwd_;
+}
+inline void IMModifyPasswordReq::set_new_pwd(const ::std::string& value) {
+  set_has_new_pwd();
+  if (new_pwd_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    new_pwd_ = new ::std::string;
+  }
+  new_pwd_->assign(value);
+  // @@protoc_insertion_point(field_set:IM.Login.IMModifyPasswordReq.new_pwd)
+}
+inline void IMModifyPasswordReq::set_new_pwd(const char* value) {
+  set_has_new_pwd();
+  if (new_pwd_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    new_pwd_ = new ::std::string;
+  }
+  new_pwd_->assign(value);
+  // @@protoc_insertion_point(field_set_char:IM.Login.IMModifyPasswordReq.new_pwd)
+}
+inline void IMModifyPasswordReq::set_new_pwd(const char* value, size_t size) {
+  set_has_new_pwd();
+  if (new_pwd_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    new_pwd_ = new ::std::string;
+  }
+  new_pwd_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:IM.Login.IMModifyPasswordReq.new_pwd)
+}
+inline ::std::string* IMModifyPasswordReq::mutable_new_pwd() {
+  set_has_new_pwd();
+  if (new_pwd_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    new_pwd_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:IM.Login.IMModifyPasswordReq.new_pwd)
+  return new_pwd_;
+}
+inline ::std::string* IMModifyPasswordReq::release_new_pwd() {
+  clear_has_new_pwd();
+  if (new_pwd_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = new_pwd_;
+    new_pwd_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void IMModifyPasswordReq::set_allocated_new_pwd(::std::string* new_pwd) {
+  if (new_pwd_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete new_pwd_;
+  }
+  if (new_pwd) {
+    set_has_new_pwd();
+    new_pwd_ = new_pwd;
+  } else {
+    clear_has_new_pwd();
+    new_pwd_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:IM.Login.IMModifyPasswordReq.new_pwd)
+}
+
+// optional string user_name = 4;
+inline bool IMModifyPasswordReq::has_user_name() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void IMModifyPasswordReq::set_has_user_name() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void IMModifyPasswordReq::clear_has_user_name() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void IMModifyPasswordReq::clear_user_name() {
+  if (user_name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    user_name_->clear();
+  }
+  clear_has_user_name();
+}
+inline const ::std::string& IMModifyPasswordReq::user_name() const {
+  // @@protoc_insertion_point(field_get:IM.Login.IMModifyPasswordReq.user_name)
+  return *user_name_;
+}
+inline void IMModifyPasswordReq::set_user_name(const ::std::string& value) {
+  set_has_user_name();
+  if (user_name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    user_name_ = new ::std::string;
+  }
+  user_name_->assign(value);
+  // @@protoc_insertion_point(field_set:IM.Login.IMModifyPasswordReq.user_name)
+}
+inline void IMModifyPasswordReq::set_user_name(const char* value) {
+  set_has_user_name();
+  if (user_name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    user_name_ = new ::std::string;
+  }
+  user_name_->assign(value);
+  // @@protoc_insertion_point(field_set_char:IM.Login.IMModifyPasswordReq.user_name)
+}
+inline void IMModifyPasswordReq::set_user_name(const char* value, size_t size) {
+  set_has_user_name();
+  if (user_name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    user_name_ = new ::std::string;
+  }
+  user_name_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:IM.Login.IMModifyPasswordReq.user_name)
+}
+inline ::std::string* IMModifyPasswordReq::mutable_user_name() {
+  set_has_user_name();
+  if (user_name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    user_name_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:IM.Login.IMModifyPasswordReq.user_name)
+  return user_name_;
+}
+inline ::std::string* IMModifyPasswordReq::release_user_name() {
+  clear_has_user_name();
+  if (user_name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = user_name_;
+    user_name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void IMModifyPasswordReq::set_allocated_user_name(::std::string* user_name) {
+  if (user_name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete user_name_;
+  }
+  if (user_name) {
+    set_has_user_name();
+    user_name_ = user_name;
+  } else {
+    clear_has_user_name();
+    user_name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:IM.Login.IMModifyPasswordReq.user_name)
+}
+
+// optional bytes attach_data = 20;
+inline bool IMModifyPasswordReq::has_attach_data() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void IMModifyPasswordReq::set_has_attach_data() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void IMModifyPasswordReq::clear_has_attach_data() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void IMModifyPasswordReq::clear_attach_data() {
+  if (attach_data_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    attach_data_->clear();
+  }
+  clear_has_attach_data();
+}
+inline const ::std::string& IMModifyPasswordReq::attach_data() const {
+  // @@protoc_insertion_point(field_get:IM.Login.IMModifyPasswordReq.attach_data)
+  return *attach_data_;
+}
+inline void IMModifyPasswordReq::set_attach_data(const ::std::string& value) {
+  set_has_attach_data();
+  if (attach_data_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    attach_data_ = new ::std::string;
+  }
+  attach_data_->assign(value);
+  // @@protoc_insertion_point(field_set:IM.Login.IMModifyPasswordReq.attach_data)
+}
+inline void IMModifyPasswordReq::set_attach_data(const char* value) {
+  set_has_attach_data();
+  if (attach_data_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    attach_data_ = new ::std::string;
+  }
+  attach_data_->assign(value);
+  // @@protoc_insertion_point(field_set_char:IM.Login.IMModifyPasswordReq.attach_data)
+}
+inline void IMModifyPasswordReq::set_attach_data(const void* value, size_t size) {
+  set_has_attach_data();
+  if (attach_data_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    attach_data_ = new ::std::string;
+  }
+  attach_data_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:IM.Login.IMModifyPasswordReq.attach_data)
+}
+inline ::std::string* IMModifyPasswordReq::mutable_attach_data() {
+  set_has_attach_data();
+  if (attach_data_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    attach_data_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:IM.Login.IMModifyPasswordReq.attach_data)
+  return attach_data_;
+}
+inline ::std::string* IMModifyPasswordReq::release_attach_data() {
+  clear_has_attach_data();
+  if (attach_data_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = attach_data_;
+    attach_data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void IMModifyPasswordReq::set_allocated_attach_data(::std::string* attach_data) {
+  if (attach_data_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete attach_data_;
+  }
+  if (attach_data) {
+    set_has_attach_data();
+    attach_data_ = attach_data;
+  } else {
+    clear_has_attach_data();
+    attach_data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:IM.Login.IMModifyPasswordReq.attach_data)
+}
+
+// -------------------------------------------------------------------
+
+// IMModifyPasswordRsp
+
+// required uint32 user_id = 1;
+inline bool IMModifyPasswordRsp::has_user_id() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void IMModifyPasswordRsp::set_has_user_id() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void IMModifyPasswordRsp::clear_has_user_id() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void IMModifyPasswordRsp::clear_user_id() {
+  user_id_ = 0u;
+  clear_has_user_id();
+}
+inline ::google::protobuf::uint32 IMModifyPasswordRsp::user_id() const {
+  // @@protoc_insertion_point(field_get:IM.Login.IMModifyPasswordRsp.user_id)
+  return user_id_;
+}
+inline void IMModifyPasswordRsp::set_user_id(::google::protobuf::uint32 value) {
+  set_has_user_id();
+  user_id_ = value;
+  // @@protoc_insertion_point(field_set:IM.Login.IMModifyPasswordRsp.user_id)
+}
+
+// required uint32 result_code = 2;
+inline bool IMModifyPasswordRsp::has_result_code() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void IMModifyPasswordRsp::set_has_result_code() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void IMModifyPasswordRsp::clear_has_result_code() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void IMModifyPasswordRsp::clear_result_code() {
+  result_code_ = 0u;
+  clear_has_result_code();
+}
+inline ::google::protobuf::uint32 IMModifyPasswordRsp::result_code() const {
+  // @@protoc_insertion_point(field_get:IM.Login.IMModifyPasswordRsp.result_code)
+  return result_code_;
+}
+inline void IMModifyPasswordRsp::set_result_code(::google::protobuf::uint32 value) {
+  set_has_result_code();
+  result_code_ = value;
+  // @@protoc_insertion_point(field_set:IM.Login.IMModifyPasswordRsp.result_code)
+}
+
+// optional string user_name = 3;
+inline bool IMModifyPasswordRsp::has_user_name() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void IMModifyPasswordRsp::set_has_user_name() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void IMModifyPasswordRsp::clear_has_user_name() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void IMModifyPasswordRsp::clear_user_name() {
+  if (user_name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    user_name_->clear();
+  }
+  clear_has_user_name();
+}
+inline const ::std::string& IMModifyPasswordRsp::user_name() const {
+  // @@protoc_insertion_point(field_get:IM.Login.IMModifyPasswordRsp.user_name)
+  return *user_name_;
+}
+inline void IMModifyPasswordRsp::set_user_name(const ::std::string& value) {
+  set_has_user_name();
+  if (user_name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    user_name_ = new ::std::string;
+  }
+  user_name_->assign(value);
+  // @@protoc_insertion_point(field_set:IM.Login.IMModifyPasswordRsp.user_name)
+}
+inline void IMModifyPasswordRsp::set_user_name(const char* value) {
+  set_has_user_name();
+  if (user_name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    user_name_ = new ::std::string;
+  }
+  user_name_->assign(value);
+  // @@protoc_insertion_point(field_set_char:IM.Login.IMModifyPasswordRsp.user_name)
+}
+inline void IMModifyPasswordRsp::set_user_name(const char* value, size_t size) {
+  set_has_user_name();
+  if (user_name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    user_name_ = new ::std::string;
+  }
+  user_name_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:IM.Login.IMModifyPasswordRsp.user_name)
+}
+inline ::std::string* IMModifyPasswordRsp::mutable_user_name() {
+  set_has_user_name();
+  if (user_name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    user_name_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:IM.Login.IMModifyPasswordRsp.user_name)
+  return user_name_;
+}
+inline ::std::string* IMModifyPasswordRsp::release_user_name() {
+  clear_has_user_name();
+  if (user_name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = user_name_;
+    user_name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void IMModifyPasswordRsp::set_allocated_user_name(::std::string* user_name) {
+  if (user_name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete user_name_;
+  }
+  if (user_name) {
+    set_has_user_name();
+    user_name_ = user_name;
+  } else {
+    clear_has_user_name();
+    user_name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:IM.Login.IMModifyPasswordRsp.user_name)
+}
+
+// optional bytes attach_data = 20;
+inline bool IMModifyPasswordRsp::has_attach_data() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void IMModifyPasswordRsp::set_has_attach_data() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void IMModifyPasswordRsp::clear_has_attach_data() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void IMModifyPasswordRsp::clear_attach_data() {
+  if (attach_data_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    attach_data_->clear();
+  }
+  clear_has_attach_data();
+}
+inline const ::std::string& IMModifyPasswordRsp::attach_data() const {
+  // @@protoc_insertion_point(field_get:IM.Login.IMModifyPasswordRsp.attach_data)
+  return *attach_data_;
+}
+inline void IMModifyPasswordRsp::set_attach_data(const ::std::string& value) {
+  set_has_attach_data();
+  if (attach_data_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    attach_data_ = new ::std::string;
+  }
+  attach_data_->assign(value);
+  // @@protoc_insertion_point(field_set:IM.Login.IMModifyPasswordRsp.attach_data)
+}
+inline void IMModifyPasswordRsp::set_attach_data(const char* value) {
+  set_has_attach_data();
+  if (attach_data_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    attach_data_ = new ::std::string;
+  }
+  attach_data_->assign(value);
+  // @@protoc_insertion_point(field_set_char:IM.Login.IMModifyPasswordRsp.attach_data)
+}
+inline void IMModifyPasswordRsp::set_attach_data(const void* value, size_t size) {
+  set_has_attach_data();
+  if (attach_data_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    attach_data_ = new ::std::string;
+  }
+  attach_data_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:IM.Login.IMModifyPasswordRsp.attach_data)
+}
+inline ::std::string* IMModifyPasswordRsp::mutable_attach_data() {
+  set_has_attach_data();
+  if (attach_data_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    attach_data_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:IM.Login.IMModifyPasswordRsp.attach_data)
+  return attach_data_;
+}
+inline ::std::string* IMModifyPasswordRsp::release_attach_data() {
+  clear_has_attach_data();
+  if (attach_data_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = attach_data_;
+    attach_data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void IMModifyPasswordRsp::set_allocated_attach_data(::std::string* attach_data) {
+  if (attach_data_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete attach_data_;
+  }
+  if (attach_data) {
+    set_has_attach_data();
+    attach_data_ = attach_data;
+  } else {
+    clear_has_attach_data();
+    attach_data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:IM.Login.IMModifyPasswordRsp.attach_data)
 }
 
 
