@@ -2,7 +2,7 @@ package IM.BaseDefine;
 option java_package = "com.mogujie.tt.protobuf";
 //option java_outer_classname = "MOGUJIEIMMessage";
 option optimize_for = LITE_RUNTIME;
-
+//https://blog.csdn.net/mao834099514/article/details/62888408
 // service id
 enum ServiceID{
     SID_LOGIN           = 0x0001;           // for login
@@ -15,6 +15,7 @@ enum ServiceID{
     SID_INTERNAL        = 0x0008;		     
 }
 
+//该枚举定义了各种与登录相关的命令号。我们对它进行修改，增加两个命令号，分别表示修改密码请求协议与修改密码响应协议，命令号分别为:0x010c, 0x010d，修改后如下:
 // command id for login
 enum LoginCmdID{
     CID_LOGIN_REQ_MSGSERVER         = 0x0101; 	//
@@ -31,7 +32,9 @@ enum LoginCmdID{
     CID_LOGIN_REQ_PUSH_SHIELD       = 0x010c;	//勿扰
     CID_LOGIN_RES_PUSH_SHIELD       = 0x010d; 	//
     CID_LOGIN_REQ_QUERY_PUSH_SHIELD = 0x010e; 	//
-    CID_LOGIN_RES_QUERY_PUSH_SHIELD = 0x010f;
+    CID_LOGIN_RES_QUERY_PUSH_SHIELD = 0x010f; 
+    CID_LOGIN_REQ_MODIFY_PWD = 0x0110; 	//修改密码
+    CID_LOGIN_RES_MODIFY_PWD = 0x0111;
 }
 
 // command id for buddy list

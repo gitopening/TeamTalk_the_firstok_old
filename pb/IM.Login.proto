@@ -110,3 +110,21 @@ message IMQueryPushShieldRsp {
     optional uint32 shield_status = 3;          // 值： 如果result_code值为0(successed)，则shield_status值设置， 1:开启， 0:关闭
     optional bytes attach_data = 20;
 }
+
+//修改密码的协议 定义好了一个修改密码请求协议,
+message IMModifyPasswordReq {
+    //cmd id:			0x010f
+    required uint32 user_id = 1;
+    required string old_pwd = 2;			
+    optional string new_pwd = 3;      
+    optional string user_name = 4;      
+    optional bytes attach_data = 20;
+}
+message IMModifyPasswordRsp {
+    //cmd id:			0x010f
+    required uint32 user_id = 1;
+    required uint32 result_code = 2;			// 值： 0:successed 1:failed
+    optional string user_name = 3;      
+    optional bytes attach_data = 20;
+}
+
