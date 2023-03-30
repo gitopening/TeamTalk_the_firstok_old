@@ -276,7 +276,10 @@ void CDBServConn::HandlePdu(CImPdu* pPdu)
         case CID_FILE_HAS_OFFLINE_RES:
             s_file_handler->HandleFileHasOfflineRes(pPdu);
             break;
-        
+
+        case CID_LOGIN_RES_MODIFY_PWD:
+            _HandleModifyPwdResponse(pPdu);
+            break;
         default:
             log("db server, wrong cmd id=%d ", pPdu->GetCommandId());
 	}
@@ -911,5 +914,21 @@ void CDBServConn::_HandleQueryPushShieldResponse(CImPdu* pPdu) {
         pMsgConn->SendPdu(pPdu);
     } else {
         log("_HandleQueryPushShieldResponse: can't found msg_conn by user_id = %u, handle = %u", user_id, handle);
+    }
+}
+
+void CDBServConn::_HandleModifyPwdResponse(CImPdu* pPdu)
+{
+    IM::Login::IMModifyPasswordRsp msg;
+    CHECK_PB_PARSE_MSG(msg.ParseFromArray(pPdu->GetBodyData(), pPdu->GetBodyLength()));
+    uint32_t user_id = msg.user_id();
+    uint32_t status = msg.status();
+    CDbAttachData attach_data((uchar_t*)msg.attach_data().c_str(), msg.attach_data().length());
+    uint32_t handle = attach_data.GetHandle();
+    log("_HandleModifyPwdResponse, user_id=%u, status=%u.", user_id, status);
+
+    CMsgConn* pMsgConn = CImUserManager::GetInstance()->GetMsgConnByHandle(user_id, handle);
+    if (pMsgConn) {
+        pMsgConn->SendPdu(pPdu);
     }
 }

@@ -17,6 +17,7 @@
  *2023-03-26 00:34:42,629 [INFO  IM] - <MsgConn.cpp>|<670>|<_HandleClientUnreadMsgCntRequest>,HandleClientUnreadMsgCntReq, from_id=1
  *2023-03-26 00:34:42,629 [INFO  IM] - <GroupChat.cpp>|<71>|<HandleGroupNormalResponse>,HandleGroupNormalResponse, user_id=1, group_cnt=0.
  *2023-03-26 00:34:42,641 [INFO  IM] - <DBServConn.cpp>|<589>|<_HandleUnreadMsgCountResponse>,HandleUnreadMsgCntResp, userId=1, total_cnt=0, user_unread_cnt=0.
+
 登陆流程中的服务器日志
  */
 
@@ -397,7 +398,11 @@ void CMsgConn::HandlePdu(CImPdu* pPdu)
             break;
         case CID_FILE_DEL_OFFLINE_REQ:
             s_file_handler->HandleClientFileDelOfflineReq(this, pPdu);
+            break; 
+        case CID_LOGIN_REQ_MODIFY_PWD:
+            _HandleModifyPwdRequest(pPdu);
             break;
+        
         default:
             log("wrong msg, cmd id=%d, user id=%u. ", pPdu->GetCommandId(), GetUserId());
             break;
@@ -1088,4 +1093,31 @@ void CMsgConn::_HandleRegisterRequest(CImPdu* pPdu)
     pdu.SetSeqNum(pPdu->GetSeqNum());
     pDbConn->SendPdu(&pdu);
 
+}
+
+
+/*
+*对以上代码简单的说明下.
+第3行:我们定义了一个ModifyPass的协议类。
+第4行:解析协议，并对协议做检查。
+第6行:获取一个db连接
+第7行:判断连接是否为空
+第8行:把与客户端的链接句柄打包成CDbAttachData。
+第9行:将打包好的CDbAttachData 放到pb协议中.
+第10行:重新将pb协议放到CImPdu协议中。
+第11行:将pdu发送到db_proxy_server中。
+*/
+void CMsgConn::_HandleModifyPwdRequest(CImPdu* pPdu) {
+    IM::Login::IMModifyPasswordReq msg;
+    CHECK_PB_PARSE_MSG(msg.ParseFromArray(pPdu->GetBodyData(), pPdu->GetBodyLength()));
+    log("IMModifyPasswordReq, user_id=%u ", GetUserId());
+    CDBServConn* pDBConn = get_db_serv_conn();
+    if (pDBConn) {
+        msg.set_user_id(GetUserId());
+        CPduAttachData attach(ATTACH_TYPE_HANDLE, m_handle, 0, NULL);
+        msg.set_attach_data(attach.GetBuffer(), attach.GetLength());
+        pPdu->SetPBMsg(&msg);
+        pDBConn->SendPdu(pPdu);
+        //至此，我们的msg_server已经处理了转发的请求了，接下来，我们需要去db_proxy_server中做处理了
+    }
 }

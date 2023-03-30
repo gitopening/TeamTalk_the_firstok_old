@@ -82,6 +82,8 @@ private:
     void _HandlePushShieldRequest(CImPdu* pPdu);
     void _HandleQueryPushShieldRequest(CImPdu* pPdu);
     void _HandleRegisterRequest(CImPdu* pPdu);
+    void _HandleModifyPwdRequest(CImPdu* pPdu);
+
 
 private:
     string          m_login_name;        //登录名拼音

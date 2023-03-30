@@ -35,6 +35,9 @@ public:
     bool updatePushShield(uint32_t user_id, uint32_t shield_status);
     bool getPushShield(uint32_t user_id, uint32_t* shield_status);
 
+    /*IMModifyPasswordReq*/
+    uint32_t modifyUserPwd(uint32_t nUserId， const string& strOldPwd,const string& strNewPwd);
+
 private:
     CUserModel();
 private:
