@@ -10,9 +10,9 @@ protoc -I=$SRC_DIR --cpp_out=$DST_DIR/cpp/ $SRC_DIR/*.proto
 mkdir -p $DST_DIR/java
 protoc -I=$SRC_DIR --java_out=$DST_DIR/java/ $SRC_DIR/*.proto
 
-#OBJC
-mkdir -p $DST_DIR/objc
-protoc -I=$SRC_DIR --objc_out=$DST_DIR/objc/ $SRC_DIR/*.proto
+#OBJC 这个目标要先去掉 要不然报错
+#mkdir -p $DST_DIR/objc
+#protoc -I=$SRC_DIR --objc_out=$DST_DIR/objc/ $SRC_DIR/*.proto
 
 #PYTHON
 mkdir -p $DST_DIR/python
